@@ -53,9 +53,13 @@ public class Scraper
                     director = list.get(3).getText().split("\n")[0].replaceAll(",", "&comma");
                 }
 
+                if (year.length() != 4) year = "null";
+                if (length.length() == 4) length = "null";
+
                 String description = "null";
                 List<WebElement> descriptionList = driver.findElements(By.xpath("//span[@data-testid='plot-xl']"));
                 if (!descriptionList.isEmpty()) description = descriptionList.get(0).getText().replaceAll(",", "&comma");
+                if (description.isEmpty() || description.isBlank()) description = "null";
 
                 String score = "null";
                 List<WebElement> scoreElements = driver.findElements(By.xpath("//div[@data-testid='hero-rating-bar__aggregate-rating__score']"));
@@ -108,7 +112,7 @@ public class Scraper
 
     private void waitElement(String till)
     {
-        Duration duration = Duration.ofSeconds(30);
+        Duration duration = Duration.ofSeconds(120);
         WebDriverWait wait = new WebDriverWait(driver, duration);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(till)));
     }
