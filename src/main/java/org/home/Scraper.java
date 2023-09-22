@@ -72,6 +72,8 @@ public class Scraper
                 ArrayList<String> temp = new ArrayList<>();
                 temp.add(Integer.toString(checkpoint));
                 FileCommunication.write(temp, "src/main/resources/checkpoint.txt");
+
+                System.out.println((i+1) + " in " + times + " is done");
             }
 
         }
